@@ -13,6 +13,7 @@ class ProductComplianceInfoEntity extends Entity
   use EntityIdTrait;
 
   protected string $productId;
+  protected string $productVersionId;
   protected bool $complianceRequired = false;
   protected ?string $complianceText = null;
   protected ?ProductEntity $product = null;
@@ -25,6 +26,16 @@ class ProductComplianceInfoEntity extends Entity
   public function setProductId(string $productId): void
   {
     $this->productId = $productId;
+  }
+
+  public function getProductVersionId(): string
+  {
+    return $this->productVersionId;
+  }
+
+  public function setProductVersionId(string $productVersionId): void
+  {
+    $this->productVersionId = $productVersionId;
   }
 
   public function getComplianceRequired(): bool
