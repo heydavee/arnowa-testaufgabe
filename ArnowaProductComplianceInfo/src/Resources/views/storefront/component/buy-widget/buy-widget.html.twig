@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget.html.twig' %}
+
+{% block buy_widget_delivery_informations %}
+	{{ parent() }}
+
+	{% if page.product.extensions.complianceInfo.complianceRequired %}
+		<div class="arnowa-product-compliance-info mt-3">
+			{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: 'info',
+                content: page.product.extensions.complianceInfo.complianceText
+            } %}
+		</div>
+	{% endif %}
+{% endblock %}
