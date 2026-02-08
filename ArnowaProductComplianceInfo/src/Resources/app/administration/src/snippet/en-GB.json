@@ -1,0 +1,11 @@
+{
+  "arnowa-product-compliance-info": {
+    "product": {
+      "cardTitle": "Product Compliance Information",
+      "complianceRequiredLabel": "Special notice required",
+      "complianceTextLabel": "Notice text",
+      "complianceTextPlaceholder": "Enter the special notice text here...",
+      "tabTitle": "Product compliance information"
+    }
+  }
+}

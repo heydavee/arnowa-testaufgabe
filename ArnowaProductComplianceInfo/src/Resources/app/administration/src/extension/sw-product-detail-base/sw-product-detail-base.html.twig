@@ -1,0 +1,26 @@
+{% block sw_product_detail_base_settings_card %}
+    {% parent %}
+
+    <sw-card
+        class="sw-product-detail-base__compliance-info-card"
+        position-identifier="sw-product-detail-base-compliance-info"
+        :title="$tc('arnowa-product-compliance-info.product.cardTitle')"
+        :is-loading="loading.product">
+
+        <sw-container columns="1fr" gap="20px">
+            <sw-switch-field
+                v-if="complianceInfo"
+                v-model:value="complianceInfo.complianceRequired"
+                :label="$tc('arnowa-product-compliance-info.product.complianceRequiredLabel')">
+            </sw-switch-field>
+
+            <sw-textarea-field
+                v-if="complianceInfo"
+                v-model:value="complianceInfo.complianceText"
+                :label="$tc('arnowa-product-compliance-info.product.complianceTextLabel')"
+                :placeholder="$tc('arnowa-product-compliance-info.product.complianceTextPlaceholder')"
+                :disabled="complianceInfo && !complianceInfo.complianceRequired">
+            </sw-textarea-field>
+        </sw-container>
+    </sw-card>
+{% endblock %}

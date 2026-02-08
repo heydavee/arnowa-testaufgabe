@@ -1,0 +1,11 @@
+{
+  "arnowa-product-compliance-info": {
+    "product": {
+      "cardTitle": "Produkthinweise",
+      "complianceRequiredLabel": "Besonderer Hinweis erforderlich",
+      "complianceTextLabel": "Hinweistext",
+      "complianceTextPlaceholder": "Geben Sie hier den besonderen Hinweistext ein...",
+      "tabTitle": "Produktspezifische Hinweise"
+    }
+  }
+}
