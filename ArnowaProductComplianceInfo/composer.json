@@ -7,8 +7,8 @@
     "shopware-plugin-class": "ArnowaProductComplianceInfo\\ArnowaProductComplianceInfo",
     "author": "David Woodward",
     "label": {
-      "de-DE": "Arnowa Produktspezifische Hinweise",
-      "en-GB": "Arnowa Product Related Info"
+      "de-DE": "Arnowa Produktbezogene Informationen",
+      "en-GB": "Arnowa Product Compliance Info"
     }
   },
   "require": {

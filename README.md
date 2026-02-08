@@ -79,3 +79,4 @@ Das Plugin erstellt in der ersten Version eine eigene Entity "ProductComplianceI
 - Es gibt nur einen Hinweis pro Produkt
 - Die Hinweise sind nicht multi-lingual pflegbar
 - Styling des Hinweises ist mit Absicht am Standard gehalten
+- Das Textfeld ist eine Textarea, man könnte es auch als Rich Text umsetzen
