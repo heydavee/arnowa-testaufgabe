@@ -38,7 +38,7 @@ class ProductComplianceInfoDefinition extends EntityDefinition
       (new FkField('product_id', 'productId', ProductDefinition::class))->addFlags(new Required()),
       (new BoolField('compliance_required', 'complianceRequired'))->addFlags(new Required()),
       new LongTextField('compliance_text', 'complianceText'),
-      new OneToOneAssociationField('product', 'productId', 'id', ProductDefinition::class),
+      new OneToOneAssociationField('product', 'product_id', 'id', ProductDefinition::class),
     ]);
   }
 }

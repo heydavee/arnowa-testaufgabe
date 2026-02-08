@@ -6,21 +6,22 @@ namespace ArnowaProductComplianceInfo\Extension;
 
 use ArnowaProductComplianceInfo\Core\Content\ProductComplianceInfo\ProductComplianceInfoDefinition;
 use Shopware\Core\Content\Product\ProductDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Shopware\Core\Framework\DataAbstractionLayer\Write\EntityExistence;
 
-class ProductExtension extends EntityExistence
+class ProductExtension extends EntityExtension
 {
 
   public function extendFields(FieldCollection $collection): void
   {
     $collection->add(
       new OneToOneAssociationField(
-        'arnowa_product_compliance_info',
+        'complianceInfo',
         'id',
-        'arnowa_product_compliance_info_id',
-        ProductComplianceInfoDefinition::class
+        'product_id',
+        ProductComplianceInfoDefinition::class,
+        false
       )
     );
   }

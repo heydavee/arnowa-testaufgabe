@@ -6,6 +6,17 @@
 
     <services>
 
+        <!-- Entity Definition -->
+        <service id="ArnowaProductComplianceInfo\Core\Content\ProductComplianceInfo\ProductComplianceInfoDefinition">
+            <tag name="shopware.entity.definition" entity="arnowa_product_compliance_info"/>
+        </service>
+
+        <!-- Product Extension -->
+        <service id="ArnowaProductComplianceInfo\Extension\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!-- Subscriber -->
         <service id="ArnowaProductComplianceInfo\Subscriber\Storefront\ProductPageLoadedSubscriber" class="ArnowaProductComplianceInfo\Subscriber\Storefront\ProductPageLoadedSubscriber">
             <tag name="kernel.event_subscriber"/>
         </service>
