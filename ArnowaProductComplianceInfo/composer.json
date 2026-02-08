@@ -1,0 +1,33 @@
+{
+  "name": "arnowa/product-compliance-info",
+  "description": "A Plugin to display product Compliance info for specific products",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "extra": {
+    "shopware-plugin-class": "ArnowaProductComplianceInfo\\ArnowaProductComplianceInfo",
+    "author": "David Woodward",
+    "label": {
+      "de-DE": "Arnowa Produktspezifische Hinweise",
+      "en-GB": "Arnowa Product Related Info"
+    }
+  },
+  "require": {
+    "php": ">= 7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~8.3.4",
+    "phpstan/phpstan": "^0.12.18",
+    "shopware/core": "*",
+    "shopware/storefront": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ArnowaProductComplianceInfo\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ArnowaProductComplianceInfo\\Tests\\": "tests/"
+    }
+  }
+}
