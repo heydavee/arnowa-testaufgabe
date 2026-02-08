@@ -8,9 +8,19 @@ Die Installation ist relativ einfach:
 
 1. Klone das Repository
 2. Erstelle eine Docker-Umgebung mit `docker-compose up -d`
-   (Wir mappen nur das Verzeichnis custom/plugins/ProductComplianceInfo in den Container ein)
+   (Wir mappen nur das Verzeichnis custom/plugins/ArnowaProductComplianceInfo in den Container)
 3. Im Backend mit folgenden Daten einloggen: admin/shopware
-4. Installiere das Plugin in der Shopware-Installation
+4. Installiere das Plugin in der Shopware-Installation oder über die CLI im Container mit folgendem Befehl:
+
+```bash
+bin/console plugin:install --activate ArnowaProductComplianceInfo
+```
+
+5. Cache leeren
+
+```bash
+bin/console cache:clear
+```
 
 -- Optional --
 
@@ -38,13 +48,34 @@ Ich habe mich bewusst für die Entity-Extension Lösung entschieden, aufgrund fo
 
    Die Entity Extension lässt sich einfacher erweitern (siehe Konzeptfragen)
 
+Eine weitere Meinung von einem Shopware Core Entwickler: http://shyim.me/blog/custom-fields/
+
 ## Technische Umsetzung
 
-Das Plugin erweitert in der ersten Version die Entity "Product" um zwei neue Felder: Boolean & Text. Die Daten werden über einen PageLoadSubscriber in der Storefront-View übergeben.
+Das Plugin erstellt in der ersten Version eine eigene Entity "ProductComplianceInfo" mit zwei Feldern: Boolean & Text. Die Daten werden über einen PageLoadSubscriber in der Storefront-View übergeben. In der Administration wird die Entity über eine Extension des Product Detail Base erweitert. Dort wird die Logik implementiert, dass der Text nur pflegbar ist, wenn die Checkbox aktiviert ist (Vue.js).
 
-### Relevante Komponenten
+## Konzeptfragen
 
-- **Entity Extension**: ProductComplianceInfo
-- **Admin**:
-- **Subscriber**: ProductComplianceInfo/src/Subscriber/Storefront/ProductPageLoadedSubscriber.php
-- **Twig Templates**
+### Wie würdest du die Lösung erweitern, wenn der Hinweis nur für bestimmte Kundengruppen (z.B. B2B) sichtbar sein soll?
+
+- Ich würde es wahrscheinlich mit einer Assoziation zum Rule Builder machen, dadurch könnte man die Regeln für Kundengruppen oder auch ganz andere Fälle flexibel definieren. Über das Backend wäre dann beim Produkt noch zusätzlich die Regel auswählbar.
+
+### Wie würdest du vorgehen, wenn rechtliche Hinweise versioniert und historisch nachvollziehbar bleiben müssen?
+
+- Ich würde die Hinweise in einer separaten Tabelle speichern. Sozusagen eine Audit Tabelle, die die Versionierung und Historie der Regeln speichert. Die Tabelle hätte Felder wie "compliance_info_id", "product_id", "compliance_info", "valid_from", "valid_to", "created_by". Bei Änderungen würde der alte Eintrag dann in die Audit Tabelle aufgenommen werden und der neue Eintrag in die aktuelle "arnowa_product_compliance_info" Tabelle. Dadurch folgt eine logische Trennung von aktuellen und historischen Daten.
+
+### Warum sollte Geschäftslogik nicht im Twig-Template implementiert werden?
+
+- Twig-Templates sind für die Darstellung gedacht. Logik im Template vermischt Verantwortlichkeiten und erschwert Wartung. Außerdem ist Logik im Template schwieriger nachzuvollziehen. Logik sollte in einem eigenen Service oder Subscriber festgelegt werden.
+
+### Welche Kriterien würdest du nutzen, um zwischen Custom Field und Entity Extension zu entscheiden (Shopware 6.6)?
+
+- Sobald es in Richtung Relationen und Custom Logic geht, würde ich Entity Extension bevorzugen. Für einfache Daten würde ich Custom Fields verwenden wobei diese schnell an Grenzen stoßen. Für mehr siehe - Erläuterung zur technischen Entscheidung: Entity-Extension statt Custom Fields
+
+## Annahmen / Vereinfachungen
+
+- Es wurde explizit Shopware 6.6 gefordert, daher die Docker Umgebung mit Shopware 6.6
+- Es wurde sich auf die Produktdetailseite fokussiert, Warenkorb, Checkout und andere Seiten wurden nicht berücksichtigt
+- Es gibt nur einen Hinweis pro Produkt
+- Die Hinweise sind nicht multi-lingual pflegbar
+- Styling des Hinweises ist mit Absicht am Standard gehalten
