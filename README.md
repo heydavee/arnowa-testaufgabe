@@ -10,7 +10,13 @@ Die Installation ist relativ einfach:
 2. Erstelle eine Docker-Umgebung mit `docker-compose up -d`
    (Wir mappen nur das Verzeichnis custom/plugins/ArnowaProductComplianceInfo in den Container)
 3. Im Backend mit folgenden Daten einloggen: admin/shopware
-4. Installiere das Plugin in der Shopware-Installation oder über die CLI im Container mit folgendem Befehl:
+4. Installiere das Plugin im Backend oder über die CLI im Container mit folgendem Befehl:
+
+```bash
+docker exec -it shopware_arnowa bash
+```
+
+dann im Container:
 
 ```bash
 bin/console plugin:install --activate ArnowaProductComplianceInfo
@@ -76,7 +82,8 @@ Das Plugin erstellt in der ersten Version eine eigene Entity "ProductComplianceI
 
 - Es wurde explizit Shopware 6.6 gefordert, daher die Docker Umgebung mit Shopware 6.6
 - Es wurde sich auf die Produktdetailseite fokussiert, Warenkorb, Checkout und andere Seiten wurden nicht berücksichtigt
-- Es gibt nur einen Hinweis pro Produkt
+- Hinweise müssen für Varianten einzeln gepflegt werden (keine Vererbung)
+- Es ist nur möglich, einen Hinweis pro Produkt zu pflegen
 - Die Hinweise sind nicht multi-lingual pflegbar
 - Styling des Hinweises ist mit Absicht am Standard gehalten
 - Das Textfeld ist eine Textarea, man könnte es auch als Rich Text umsetzen
