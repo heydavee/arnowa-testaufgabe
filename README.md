@@ -4,9 +4,12 @@
 
 Da die Anforderung ist, das Plugin unter Shopware 6.6 umzusetzen, habe ich eine Docker-Umgebung für Shopware 6.6 erstellt. Ich verwende dafür die Docker-Images von [dockware](https://dockware.io/). Die genaue Versionsnummer habe ich hier entnommen: https://hub.docker.com/r/dockware/shopware/tags
 
-Die Installation ist relativ einfach:
+Falls das Plugin in eine bereits bestehende Shopware 6.6 Installation installiert werden soll, einfach die .zip von hier herunterladen:
+https://github.com/heydavee/arnowa-testaufgabe/releases/tag/Pre-Release
 
-1. Klone das Repository oder Downloade die .zip Datei direkt von https://github.com/heydavee/arnowa-testaufgabe/releases/tag/Pre-Release
+Die Installation der Entwicklungsumgebung ist relativ einfach:
+
+1. Klone das Repository
 2. Erstelle eine Docker-Umgebung mit `docker-compose up -d`
    (Wir mappen nur das Verzeichnis custom/plugins/ArnowaProductComplianceInfo in den Container)
 3. Im Backend mit folgenden Daten einloggen: admin/shopware
@@ -94,5 +97,6 @@ Das Plugin erstellt in der ersten Version eine eigene Entity "ProductComplianceI
 - Die Hinweise sind nicht multi-lingual pflegbar
 - Styling des Hinweises ist mit Absicht am Standard gehalten
 - Das Textfeld ist eine Textarea, man könnte es auch als Rich Text umsetzen
+
 
 
